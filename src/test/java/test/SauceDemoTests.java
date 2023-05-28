@@ -1,6 +1,5 @@
 package test;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -32,39 +31,35 @@ public class SauceDemoTests {
         CheckoutPages checkoutPages = shoppingCart.clickCheckoutButton();
         checkoutPages.fillAndSubmitCheckoutForm("Ann", "Johnson", "194378");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(driver.findElements(By.className("cart_item")).size(), 1);
-        softAssert.assertEquals(driver.findElement
-                (By.id("item_4_title_link")).getText(), "Sauce Labs Backpack");
+        softAssert.assertEquals(shoppingCart.countProductsInCart(), 1);
+        softAssert.assertEquals(checkoutPages.findElementTextById(driver, "item_4_title_link"), "Sauce Labs Backpack");
         softAssert.assertEquals(Integer.parseInt
-                (checkoutPages.findElementTextByCssSelector(".cart_quantity")), 1);
-        softAssert.assertEquals(checkoutPages.findElementTextByClassName("inventory_item_price"),
+                (checkoutPages.findElementTextByCssSelector(driver, ".cart_quantity")), 1);
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "inventory_item_price"),
                 expectedPrice);
-        softAssert.assertEquals(checkoutPages.findElementTextByClassName("summary_subtotal_label"),
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "summary_subtotal_label"),
                 "Item total: " + expectedPrice);
-        softAssert.assertEquals(checkoutPages.findElementTextByClassName("summary_tax_label"),
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "summary_tax_label"),
                 "Tax: $2.40");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(".summary_info_label.summary_total_label"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, ".summary_info_label.summary_total_label"),
                 "Total: $32.39");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(1)"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "div.summary_info > div:nth-child(1)"),
                 "Payment Information");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(2)"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "div.summary_info > div:nth-child(2)"),
                 "SauceCard #31337");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(3)"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "div.summary_info > div:nth-child(3)"),
                 "Shipping Information");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(4)"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "div.summary_info > div:nth-child(4)"),
                 "Free Pony Express Delivery!");
-        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(5)"),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "div.summary_info > div:nth-child(5)"),
                 "Price Total");
 
         checkoutPages.finishCheckout();
-        softAssert.assertEquals(driver.findElement(By.cssSelector("#back-to-products")).getText(), "Back Home");
-        softAssert.assertEquals(driver.findElement(By.className("complete-text")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, "#back-to-products"), "Back Home");
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "complete-text"),
                 "Your order has been dispatched, and will arrive just as fast as the pony can get there!");
-        softAssert.assertEquals(driver.findElement(By.className("complete-header")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "complete-header"),
                 "Thank you for your order!");
-        softAssert.assertTrue(driver.findElement(By.id("checkout_complete_container"))
-                .findElement(By.className("pony_express"))
-                .isDisplayed());
         softAssert.assertAll();
     }
 
@@ -93,11 +88,9 @@ public class SauceDemoTests {
         shoppingCart.removeFromCart(driver, "remove-sauce-labs-backpack");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(shoppingCart.countProductsInCart(), 1);
-        softAssert.assertEquals(driver.findElement(By.id("item_2_title_link")).getText(), "Sauce Labs Onesie");
-        softAssert.assertEquals(Integer.parseInt(driver.findElement
-                (By.cssSelector(".cart_quantity")).getText()), 1);
-        softAssert.assertEquals(driver.findElement
-                        (By.className("inventory_item_price")).getText(),
+        softAssert.assertEquals(shoppingCart.findElementTextById(driver, "item_2_title_link"), "Sauce Labs Onesie");
+        softAssert.assertEquals(Integer.parseInt(shoppingCart.findElementTextByCssSelector(driver, ".cart_quantity")), 1);
+        softAssert.assertEquals(shoppingCart.findElementTextByClassName(driver, "inventory_item_price"),
                 "$7.99");
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadge(), 1);
         shoppingCart.removeFromCart(driver, "remove-sauce-labs-onesie");

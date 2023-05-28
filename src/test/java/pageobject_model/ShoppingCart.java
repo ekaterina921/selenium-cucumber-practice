@@ -27,7 +27,7 @@ public class ShoppingCart extends SauceDemoPages implements InventoryItemsAction
 
     public int countProductsInCart() {
         return driver.findElements
-                (By.className("cart_item_label")).size();
+                (By.className("cart_item")).size();
     }
 
 }

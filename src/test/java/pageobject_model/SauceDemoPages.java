@@ -5,17 +5,19 @@ import org.openqa.selenium.WebDriver;
 
 public class SauceDemoPages {
 
-    protected WebDriver driver;
-
     public SauceDemoPages() {
     }
 
-    public String findElementTextByCssSelector(String cssSelector) {
+    public String findElementTextByCssSelector(WebDriver driver, String cssSelector) {
         return driver.findElement(By.cssSelector(cssSelector)).getText();
     }
 
-    public String findElementTextByClassName (String className) {
+    public String findElementTextByClassName(WebDriver driver, String className) {
         return driver.findElement
                 (By.className(className)).getText();
+    }
+
+    public String findElementTextById(WebDriver driver, String elementId) {
+        return driver.findElement(By.id(elementId)).getText();
     }
 }

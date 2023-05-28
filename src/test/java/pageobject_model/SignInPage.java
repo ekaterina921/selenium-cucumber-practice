@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class SignInPage extends SauceDemoPages{
+public class SignInPage extends SauceDemoPages {
     protected WebDriver driver;
     private final By usernameBy = By.name("user-name");
     private final By passwordBy = By.name("password");
     private final By signinBy = By.name("login-button");
 
-    public SignInPage (WebDriver driver) {
+    public SignInPage(WebDriver driver) {
         this.driver = driver;
         try {
             driver.findElement(By.className("login_container"));
