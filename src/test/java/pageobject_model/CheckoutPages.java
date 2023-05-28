@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPages {
+public class CheckoutPages extends SauceDemoPages{
     protected WebDriver driver;
     private final By userFirstNameBy = By.name("firstName");
     private final By userLastNameBy = By.name("lastName");

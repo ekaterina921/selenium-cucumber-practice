@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class ShoppingCart implements InventoryItemsActions {
+public class ShoppingCart extends SauceDemoPages implements InventoryItemsActions {
 
     protected WebDriver driver;
 
@@ -23,6 +23,11 @@ public class ShoppingCart implements InventoryItemsActions {
     public void removeFromCart(WebDriver driver, String id) {
         driver.findElement(By.id(id)).click();
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    }
+
+    public int countProductsInCart() {
+        return driver.findElements
+                (By.className("cart_item_label")).size();
     }
 
 }

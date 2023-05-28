@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class ProductsPage implements InventoryItemsActions {
+public class ProductsPage extends SauceDemoPages implements InventoryItemsActions {
     protected WebDriver driver;
 
     public ProductsPage(WebDriver driver) {

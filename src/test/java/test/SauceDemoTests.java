@@ -35,29 +35,25 @@ public class SauceDemoTests {
         softAssert.assertEquals(driver.findElements(By.className("cart_item")).size(), 1);
         softAssert.assertEquals(driver.findElement
                 (By.id("item_4_title_link")).getText(), "Sauce Labs Backpack");
-        softAssert.assertEquals(Integer.parseInt(driver.findElement
-                (By.cssSelector(".cart_quantity")).getText()), 1);
-        softAssert.assertEquals(driver.findElement
-                        (By.className("inventory_item_price")).getText(),
+        softAssert.assertEquals(Integer.parseInt
+                (checkoutPages.findElementTextByCssSelector(".cart_quantity")), 1);
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName("inventory_item_price"),
                 expectedPrice);
-        softAssert.assertEquals(driver.findElement
-                        (By.className("summary_subtotal_label")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName("summary_subtotal_label"),
                 "Item total: " + expectedPrice);
-        softAssert.assertEquals(driver.findElement
-                        (By.className("summary_tax_label")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName("summary_tax_label"),
                 "Tax: $2.40");
-        softAssert.assertEquals(driver.findElement
-                        (By.cssSelector(".summary_info_label.summary_total_label")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(".summary_info_label.summary_total_label"),
                 "Total: $32.39");
-        softAssert.assertEquals(driver.findElement(By.cssSelector("div.summary_info > div:nth-child(1)")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(1)"),
                 "Payment Information");
-        softAssert.assertEquals(driver.findElement(By.cssSelector("div.summary_info > div:nth-child(2)")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(2)"),
                 "SauceCard #31337");
-        softAssert.assertEquals(driver.findElement(By.cssSelector("div.summary_info > div:nth-child(3)")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(3)"),
                 "Shipping Information");
-        softAssert.assertEquals(driver.findElement(By.cssSelector("div.summary_info > div:nth-child(4)")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(4)"),
                 "Free Pony Express Delivery!");
-        softAssert.assertEquals(driver.findElement(By.cssSelector("div.summary_info > div:nth-child(5)")).getText(),
+        softAssert.assertEquals(checkoutPages.findElementTextByCssSelector("div.summary_info > div:nth-child(5)"),
                 "Price Total");
 
         checkoutPages.finishCheckout();
@@ -96,8 +92,7 @@ public class SauceDemoTests {
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
         shoppingCart.removeFromCart(driver, "remove-sauce-labs-backpack");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(driver.findElements
-                (By.className("cart_item_label")).size(), 1);
+        softAssert.assertEquals(shoppingCart.countProductsInCart(), 1);
         softAssert.assertEquals(driver.findElement(By.id("item_2_title_link")).getText(), "Sauce Labs Onesie");
         softAssert.assertEquals(Integer.parseInt(driver.findElement
                 (By.cssSelector(".cart_quantity")).getText()), 1);
@@ -106,8 +101,7 @@ public class SauceDemoTests {
                 "$7.99");
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadge(), 1);
         shoppingCart.removeFromCart(driver, "remove-sauce-labs-onesie");
-        softAssert.assertEquals(driver.findElements
-                (By.className("cart_item_label")).size(), 0);
+        softAssert.assertEquals(shoppingCart.countProductsInCart(), 0);
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadge(), 0);
         softAssert.assertAll();
     }
