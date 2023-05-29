@@ -20,7 +20,7 @@ public class SignInPage extends SauceDemoPages {
         }
     }
 
-    public void loginValidUser(String userName, String password) {
+    public void signIn(String userName, String password) {
         driver.findElement(usernameBy).sendKeys(userName);
         driver.findElement(passwordBy).sendKeys(password);
         driver.findElement(signinBy).click();
