@@ -11,14 +11,14 @@ public class ShoppingCartBadge {
         this.driver = driver;
     }
 
-    public int getShoppingCartBadge() {
-        int shoppingCartBadge;
+    public int getShoppingCartBadgeCount() {
+        int shoppingCartBadgeCount;
         try {
-            shoppingCartBadge = Integer.parseInt(driver.findElement(By.className("shopping_cart_badge")).getText());
+            shoppingCartBadgeCount = Integer.parseInt(driver.findElement(By.className("shopping_cart_badge")).getText());
         } catch (NoSuchElementException e) {
-            shoppingCartBadge = 0;
+            shoppingCartBadgeCount = 0;
         }
-        return shoppingCartBadge;
+        return shoppingCartBadgeCount;
     }
 
     public ShoppingCart openShoppingCart() {
