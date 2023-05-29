@@ -25,7 +25,7 @@ public class ShoppingCart extends SauceDemoPages implements InventoryItemsAction
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
-    public int countProductsInCart() {
+    public int getCountProductsInCart() {
         return driver.findElements
                 (By.className("cart_item")).size();
     }
