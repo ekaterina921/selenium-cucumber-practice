@@ -2,7 +2,6 @@ package test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -69,9 +68,9 @@ public class SauceDemoTests {
         ProductsPage productsPage = new ProductsPage(driver);
         productsPage.openInventoryItem("Sauce Labs Backpack");
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-backpack");
-        SoftAssert softAssert = new SoftAssert();
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
-        Assert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 1);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 1);
         productsPage.removeFromCart(driver, "remove-sauce-labs-backpack");
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0);
         softAssert.assertAll();
