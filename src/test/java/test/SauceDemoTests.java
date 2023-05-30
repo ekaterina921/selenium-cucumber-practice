@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import pageobject_model.*;
 
 
-public class SauceDemoTests {
+public class SauceDemoTests implements Constants {
     private WebDriver driver;
 
     @BeforeTest
@@ -23,21 +23,20 @@ public class SauceDemoTests {
     @Test
     public void testCheckoutHappyPath() {
         ProductsPage productsPage = new ProductsPage(driver);
-        productsPage.addToCart(driver, "add-to-cart-sauce-labs-backpack");
-        String expectedPrice = "$29.99";
+        productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
         CheckoutPages checkoutPages = shoppingCart.clickCheckoutButton();
         checkoutPages.fillAndSubmitCheckoutForm("Ann", "Johnson", "194378");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(shoppingCart.getCountProductsInCart(), 1);
-        softAssert.assertEquals(checkoutPages.findElementTextById(driver, "item_4_title_link"), "Sauce Labs Backpack");
+        softAssert.assertEquals(checkoutPages.findElementTextById(driver, "item_4_title_link"), SAUCE_LABS_BACKPACK);
         softAssert.assertEquals(Integer.parseInt
-                (checkoutPages.findElementTextByCssSelector(driver, ".cart_quantity")), 1);
-        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "inventory_item_price"),
-                expectedPrice);
+                (checkoutPages.findElementTextByCssSelector(driver, FINDING_QUANTITY_OF_SINGLE_PRODUCT_IN_CART)), 1);
+        softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, FINDING_PRICE_OF_SINGLE_PRODUCT_IN_CART),
+                PRICE_SAUCE_LABS_BACKPACK);
         softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "summary_subtotal_label"),
-                "Item total: " + expectedPrice);
+                "Item total: " + PRICE_SAUCE_LABS_BACKPACK);
         softAssert.assertEquals(checkoutPages.findElementTextByClassName(driver, "summary_tax_label"),
                 "Tax: $2.40");
         softAssert.assertEquals(checkoutPages.findElementTextByCssSelector(driver, ".summary_info_label.summary_total_label"),
@@ -64,32 +63,32 @@ public class SauceDemoTests {
 
     @Test(priority = 1)
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage() {
-        driver.navigate().to("https://www.saucedemo.com/inventory.html");
+        driver.navigate().to(PRODUCTS_PAGE_URL);
         ProductsPage productsPage = new ProductsPage(driver);
-        productsPage.openInventoryItem("Sauce Labs Backpack");
-        productsPage.addToCart(driver, "add-to-cart-sauce-labs-backpack");
+        productsPage.openInventoryItem(SAUCE_LABS_BACKPACK);
+        productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 1);
-        productsPage.removeFromCart(driver, "remove-sauce-labs-backpack");
+        productsPage.removeFromCart(driver, REMOVING_FROM_CART_SAUCE_LABS_BACKPACK);
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0);
         softAssert.assertAll();
     }
 
     @Test(priority = 2)
     public void testAddingToAndRemovingSeveralProductsToCart() {
-        driver.navigate().to("https://www.saucedemo.com/inventory.html");
+        driver.navigate().to(PRODUCTS_PAGE_URL);
         ProductsPage productsPage = new ProductsPage(driver);
-        productsPage.addToCart(driver, "add-to-cart-sauce-labs-backpack");
+        productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-onesie");
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
-        shoppingCart.removeFromCart(driver, "remove-sauce-labs-backpack");
+        shoppingCart.removeFromCart(driver, REMOVING_FROM_CART_SAUCE_LABS_BACKPACK);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(shoppingCart.getCountProductsInCart(), 1);
         softAssert.assertEquals(shoppingCart.findElementTextById(driver, "item_2_title_link"), "Sauce Labs Onesie");
-        softAssert.assertEquals(Integer.parseInt(shoppingCart.findElementTextByCssSelector(driver, ".cart_quantity")), 1);
-        softAssert.assertEquals(shoppingCart.findElementTextByClassName(driver, "inventory_item_price"),
+        softAssert.assertEquals(Integer.parseInt(shoppingCart.findElementTextByCssSelector(driver, FINDING_QUANTITY_OF_SINGLE_PRODUCT_IN_CART)), 1);
+        softAssert.assertEquals(shoppingCart.findElementTextByClassName(driver, FINDING_PRICE_OF_SINGLE_PRODUCT_IN_CART),
                 "$7.99");
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 1);
         shoppingCart.removeFromCart(driver, "remove-sauce-labs-onesie");
