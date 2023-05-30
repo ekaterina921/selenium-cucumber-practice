@@ -11,7 +11,7 @@ public class CheckoutPages extends SauceDemoPages {
     private final By postalCodeBy = By.name("postalCode");
     private final By continueBy = By.name("continue");
 
-    public CheckoutPages(WebDriver driver) {
+    CheckoutPages(WebDriver driver) {
         this.driver = driver;
     }
 

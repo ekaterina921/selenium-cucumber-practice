@@ -12,12 +12,7 @@ public class SignInPage extends SauceDemoPages {
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
-        try {
-            driver.findElement(By.className("login_container"));
-        } catch (NoSuchElementException e) {
-            throw new IllegalStateException("This is not Sign In Page," +
-                    "current page is: " + driver.getCurrentUrl());
-        }
+        checkCurrentPage(driver, "login_container", "Sign In");
     }
 
     public void signIn(String userName, String password) {

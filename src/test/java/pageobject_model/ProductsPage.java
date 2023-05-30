@@ -9,16 +9,7 @@ public class ProductsPage extends SauceDemoPages implements InventoryItemsAction
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
-        try {
-            if (!findElementTextByClassName(driver, "title").equals("Products")) {
-                throw new NoSuchElementException("This is not Products page");
-            }
-        } catch (NoSuchElementException e) {
-            {
-                throw new IllegalStateException("This is not Products page," +
-                        " current page is: " + driver.getCurrentUrl());
-            }
-        }
+        checkCurrentPage(driver, "title", "Products");
     }
 
     public void openInventoryItem(String itemName) {

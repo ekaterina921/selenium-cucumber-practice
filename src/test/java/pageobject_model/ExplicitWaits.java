@@ -12,7 +12,6 @@ public class ExplicitWaits {
     public static void waitPage(WebDriver driver, String pageTitle) {
         (new WebDriverWait(driver, Duration.ofSeconds(MEDIUM_DURATION_OF_WAITING))).
                 until(ExpectedConditions.
-
                         textToBePresentInElement(driver.findElement(By.className("title")), pageTitle));
     }
 
