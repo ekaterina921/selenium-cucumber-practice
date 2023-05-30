@@ -15,9 +15,9 @@ public class ExplicitWaits {
                         textToBePresentInElement(driver.findElement(By.className("title")), pageTitle));
     }
 
-    public static void waitInventoryItemPage(WebDriver driver) {
+    public static void waitPageByElementId(WebDriver driver, String elementId) {
         (new WebDriverWait(driver, Duration.ofSeconds(DURATIONOFWAITING))).
-                until(ExpectedConditions.presenceOfElementLocated(By.id("back-to-products")));
+                until(ExpectedConditions.presenceOfElementLocated(By.id(elementId)));
     }
 
     public static void waitRemoveButton(WebDriver driver) {

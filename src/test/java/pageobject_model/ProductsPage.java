@@ -23,7 +23,7 @@ public class ProductsPage extends SauceDemoPages implements InventoryItemsAction
 
     public void openInventoryItem(String itemName) {
         driver.findElement(By.linkText(itemName)).click();
-        ExplicitWaits.waitInventoryItemPage(driver);
+        ExplicitWaits.waitPageByElementId(driver, "back-to-products");
     }
 
 }
