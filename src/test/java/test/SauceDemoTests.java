@@ -6,10 +6,10 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pageobject_model.*;
+import pageobject_model_sauce_demo.*;
 
 
-public class SauceDemoTests implements Constants {
+public class SauceDemoTests implements ConstantsSauceDemo {
     private WebDriver driver;
 
     @BeforeTest
@@ -83,7 +83,7 @@ public class SauceDemoTests implements Constants {
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage() {
         driver.navigate().to(PRODUCTS_PAGE_URL);
         ProductsPage productsPage = new ProductsPage(driver);
-        productsPage.openInventoryItem(SAUCE_LABS_BACKPACK);
+        productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         SoftAssert softAssert = new SoftAssert();
@@ -130,3 +130,4 @@ public class SauceDemoTests implements Constants {
         driver.quit();
     }
 }
+

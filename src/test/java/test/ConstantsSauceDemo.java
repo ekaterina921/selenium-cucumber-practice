@@ -1,6 +1,6 @@
 package test;
 
-public interface Constants {
+public interface ConstantsSauceDemo {
     String ADDING_TO_CART_SAUCE_LABS_BACKPACK = "add-to-cart-sauce-labs-backpack";
     String SAUCE_LABS_BACKPACK = "Sauce Labs Backpack";
     String SAUCE_LABS_ONESIE = "Sauce Labs Onesie";
