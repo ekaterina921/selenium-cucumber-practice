@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name = "Parallel Testing Suite">
+    <test name = "Parallel Tests" parallel = "methods" thread-count = "5">
+        <classes>
+            <class name="test.YandexDiskTests"/>
+            <class name = "test.SauceDemoTests" />
+        </classes>
+    </test>
+</suite>

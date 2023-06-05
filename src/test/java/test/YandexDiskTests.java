@@ -5,11 +5,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pageobject_model_yandex_disk.ClientDiskPage;
-import pageobject_model_yandex_disk.LandingPage;
-import pageobject_model_yandex_disk.SignInPage;
-import pageobject_model_yandex_disk.TrashBinPage;
-
+import pageobject_model_yandex_disk.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -21,10 +17,9 @@ public class YandexDiskTests implements ConstantsSauceDemo {
 
     @Test
     public void testRestoringFromBin() throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setPlatform(Platform.WIN10);
-
-        WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
+      DesiredCapabilities caps = new DesiredCapabilities();
+       caps.setPlatform(Platform.WIN10);
+       WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         LandingPage landingPage = new LandingPage();
         landingPage.getDiskLandingPage(driver);
