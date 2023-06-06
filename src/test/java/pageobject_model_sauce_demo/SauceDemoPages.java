@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class SauceDemoPages {
+public abstract class SauceDemoPages {
 
     public SauceDemoPages() {
     }
@@ -22,16 +22,13 @@ public class SauceDemoPages {
         return driver.findElement(By.id(elementId)).getText();
     }
 
-    public boolean checkCurrentPage(WebDriver driver, String className, String pageTitle) {
+    public void checkCurrentPage(WebDriver driver, String className, String pageTitle) {
         try {
             if (pageTitle.equalsIgnoreCase("Sign In")) {
                 driver.findElement(By.className(className));
-                return true;
             } else {
                 if (!findElementTextByClassName(driver, className).equals(pageTitle)) {
                     throw new NoSuchElementException(String.format("This is not %s page", pageTitle));
-                } else {
-                    return true;
                 }
             }
         } catch (NoSuchElementException e) {
