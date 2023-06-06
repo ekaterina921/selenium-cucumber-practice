@@ -1,25 +1,20 @@
 package test;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageobject_model_sauce_demo.*;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 
-
-public class SauceDemoTests implements ConstantsSauceDemo {
-    private WebDriver driver;
+public class SauceDemoTests implements ConstantsSauceDemo, Credentials {
 
     @Test
-    public void testCheckoutHappyPath() throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setPlatform(Platform.WIN10);
-        WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
+    public void testCheckoutHappyPath() {
+        BaseTestConfig baseTestConfig = new BaseTestConfig();
+        WebDriver driver =  baseTestConfig.initTest();
+        driver.navigate().to(SIGN_IN_PAGE_URL);
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
         ProductsPage productsPage = new ProductsPage(driver);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
@@ -75,15 +70,16 @@ public class SauceDemoTests implements ConstantsSauceDemo {
                 "Thank you for your order!",
                 "Complete header is not displayed on Checkout:Complete! page!");
         softAssert.assertAll();
-        driver.quit();
+        baseTestConfig.endTest();
     }
 
     @Test
-    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage() throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setPlatform(Platform.WIN10);
-        WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
-        driver.navigate().to(PRODUCTS_PAGE_URL);
+    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
+        BaseTestConfig baseTestConfig = new BaseTestConfig();
+        WebDriver driver =  baseTestConfig.initTest();
+        driver.navigate().to(SIGN_IN_PAGE_URL);
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
         ProductsPage productsPage = new ProductsPage(driver);
         productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
@@ -95,15 +91,16 @@ public class SauceDemoTests implements ConstantsSauceDemo {
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0,
                 "Shopping Cart Badge is displayed incorrectly after removing product from cart on Inventory Item page. Should be 0.");
         softAssert.assertAll();
-        driver.quit();
+        baseTestConfig.endTest();
     }
 
     @Test
-    public void testAddingToAndRemovingSeveralProductsToCart() throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setPlatform(Platform.WIN10);
-        WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), caps);
-        driver.navigate().to(PRODUCTS_PAGE_URL);
+    public void testAddingToAndRemovingSeveralProductsToCart(){
+        BaseTestConfig baseTestConfig = new BaseTestConfig();
+        WebDriver driver =  baseTestConfig.initTest();
+        driver.navigate().to(SIGN_IN_PAGE_URL);
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
         ProductsPage productsPage = new ProductsPage(driver);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-onesie");
@@ -129,7 +126,8 @@ public class SauceDemoTests implements ConstantsSauceDemo {
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0,
                 "Shopping Cart Badge is displayed incorrectly. Should be 1.");
         softAssert.assertAll();
-        driver.quit();
+        baseTestConfig.endTest();
     }
+
 }
 
