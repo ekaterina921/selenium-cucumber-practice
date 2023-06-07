@@ -1,4 +1,4 @@
-package pageobject_model;
+package pageobject_model_sauce_demo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
