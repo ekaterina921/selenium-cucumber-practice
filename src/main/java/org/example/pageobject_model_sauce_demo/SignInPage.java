@@ -1,5 +1,6 @@
-package pageobject_model_sauce_demo;
+package org.example.pageobject_model_sauce_demo;
 
+import org.example.models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,10 +15,11 @@ public class SignInPage extends SauceDemoPages {
         checkCurrentPage(driver, "login_container", "Sign In");
     }
 
-    public void signIn(String userName, String password) {
-        driver.findElement(usernameBy).sendKeys(userName);
-        driver.findElement(passwordBy).sendKeys(password);
+    public ProductsPage signIn(User user) {
+        driver.findElement(usernameBy).sendKeys(user.getUsername());
+        driver.findElement(passwordBy).sendKeys(user.getPassword());
         driver.findElement(signinBy).click();
         ExplicitWaits.waitPage(driver, "Products");
+        return new ProductsPage(driver);
     }
 }

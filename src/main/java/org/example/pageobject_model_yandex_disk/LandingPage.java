@@ -1,4 +1,4 @@
-package pageobject_model_yandex_disk;
+package org.example.pageobject_model_yandex_disk;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

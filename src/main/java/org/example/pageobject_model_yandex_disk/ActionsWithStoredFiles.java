@@ -1,4 +1,4 @@
-package pageobject_model_yandex_disk;
+package org.example.pageobject_model_yandex_disk;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,15 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static pageobject_model_yandex_disk.YandexDiskPages.selectorForFiles;
-
 public interface ActionsWithStoredFiles {
     default WebElement findFile(WebDriver driver) {
-        return driver.findElement(By.cssSelector(selectorForFiles));
+        return driver.findElement(By.cssSelector(YandexDiskPages.selectorForFiles));
     }
 
     default int countFiles(WebDriver driver) {
-        return driver.findElements(By.cssSelector(selectorForFiles)).size();
+        return driver.findElements(By.cssSelector(YandexDiskPages.selectorForFiles)).size();
     }
 
     default void openFileContextMenu(WebDriver driver) {
