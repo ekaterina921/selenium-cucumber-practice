@@ -2,7 +2,6 @@ package test;
 
 import lombok.extern.log4j.Log4j;
 import org.example.drivers.DriverContainer;
-import org.example.drivers.DriverCreator;
 import org.example.service.UserCreator;
 import org.example.utils.TestListener;
 import org.openqa.selenium.WebDriver;

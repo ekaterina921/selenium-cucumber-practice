@@ -1,7 +1,6 @@
 package test;
 
 import org.example.drivers.DriverContainer;
-import org.example.drivers.DriverCreator;
 import org.example.models.User;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.UserCreator;
@@ -10,7 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, Credentials{
+public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo {
 
     @Test
     public void testCheckoutHappyPath() {
