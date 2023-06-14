@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public interface ActionsWithStoredFiles {
+    String FILES_ICON = "#app .listing-item__icon.listing-item__icon_type_preview img";
     default WebElement findFile(WebDriver driver) {
-        return driver.findElement(By.cssSelector(YandexDiskPages.selectorForFiles));
+        return driver.findElement(By.cssSelector(FILES_ICON));
     }
 
     default int countFiles(WebDriver driver) {
-        return driver.findElements(By.cssSelector(YandexDiskPages.selectorForFiles)).size();
+        return driver.findElements(By.cssSelector(FILES_ICON)).size();
     }
 
     default void openFileContextMenu(WebDriver driver) {

@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 
 public class SignInPage extends SauceDemoPages {
     protected WebDriver driver;
-    private final By usernameBy = By.name("user-name");
-    private final By passwordBy = By.name("password");
-    private final By signinBy = By.name("login-button");
+    private final By usernameInput = By.name("user-name");
+    private final By passwordInput = By.name("password");
+    private final By signInButton = By.name("login-button");
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
@@ -16,9 +16,9 @@ public class SignInPage extends SauceDemoPages {
     }
 
     public ProductsPage signIn(User user) {
-        driver.findElement(usernameBy).sendKeys(user.getUsername());
-        driver.findElement(passwordBy).sendKeys(user.getPassword());
-        driver.findElement(signinBy).click();
+        driver.findElement(usernameInput).sendKeys(user.getUsername());
+        driver.findElement(passwordInput).sendKeys(user.getPassword());
+        driver.findElement(signInButton).click();
         ExplicitWaits.waitPage(driver, "Products");
         return new ProductsPage(driver);
     }
