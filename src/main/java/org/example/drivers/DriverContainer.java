@@ -2,7 +2,9 @@ package org.example.drivers;
 
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
-    @Log4j
+
+
+@Log4j
     public class DriverContainer {
         static ThreadLocal<WebDriver> local = new ThreadLocal<>();
 

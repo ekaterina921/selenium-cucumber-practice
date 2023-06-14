@@ -12,17 +12,18 @@ import org.testng.annotations.Listeners;
 @Log4j
 @Listeners(TestListener.class)
 public class BaseTestConfig {
+
     @BeforeMethod
-    public WebDriver initTest() {
+    public void initTest() {
+        log.debug("Start test");
         DriverContainer.getDriver().manage().window().maximize();
-        return DriverContainer.getDriver();
     }
 
     @AfterMethod(alwaysRun = true)
     public void endTest() {
-        log.debug("Close browser");
+        log.debug("End test");
         UserCreator.removeUser();
-//        DriverContainer.getDriver().quit();
+        DriverContainer.getDriver().quit();
         DriverContainer.removeDriver();
     }
 }

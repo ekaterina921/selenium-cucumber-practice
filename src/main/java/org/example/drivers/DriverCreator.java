@@ -9,25 +9,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @Log4j
 public class DriverCreator {
 
-    private static WebDriver driver;
-
     private DriverCreator() {
     }
 
     public static WebDriver create(String browser) {
-        if (null == driver) {
             switch (browser) {
                 case "firefox" -> {
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    return new FirefoxDriver();
                 }
                 default -> {
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    return new ChromeDriver();
                 }
             }
-            driver.manage().window().maximize();
-        }
-        return driver;
     }
 }

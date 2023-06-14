@@ -19,19 +19,18 @@ public class YandexDiskTests extends BaseTestConfig implements Credentials {
 
     @Test
     public void testRestoringFromBin(){
-        WebDriver driver = DriverContainer.getDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        DriverContainer.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         LandingPage landingPage = new LandingPage();
-        landingPage.getDiskLandingPage(driver);
-        SignInPage signInPage = landingPage.clickSignInButton(driver);
+        landingPage.getDiskLandingPage(DriverContainer.getDriver());
+        SignInPage signInPage = landingPage.clickSignInButton(DriverContainer.getDriver());
         User testUser = UserCreator.withCredentialsFromProperty("yandex");
-        ClientDiskPage clientDiskPage = signInPage.signIn(driver, testUser);
-        clientDiskPage.moveFileToBin(driver);
-        TrashBinPage trashBinPage = clientDiskPage.openBin(driver);
-        int elementsBeforeRestore = trashBinPage.countFiles(driver);
-        trashBinPage.openFileContextMenu(driver);
-        trashBinPage.clickContextMenuItem(driver, "div[data-key='item-0'] > span.Menu-Text");
-        int elementsAfterRestore = trashBinPage.countFiles(driver);
+        ClientDiskPage clientDiskPage = signInPage.signIn(DriverContainer.getDriver(), testUser);
+        clientDiskPage.moveFileToBin(DriverContainer.getDriver());
+        TrashBinPage trashBinPage = clientDiskPage.openBin(DriverContainer.getDriver());
+        int elementsBeforeRestore = trashBinPage.countFiles(DriverContainer.getDriver());
+        trashBinPage.openFileContextMenu(DriverContainer.getDriver());
+        trashBinPage.clickContextMenuItem(DriverContainer.getDriver(), "div[data-key='item-0'] > span.Menu-Text");
+        int elementsAfterRestore = trashBinPage.countFiles(DriverContainer.getDriver());
         Assert.assertEquals(elementsAfterRestore, elementsBeforeRestore - 1);
     }
 }
