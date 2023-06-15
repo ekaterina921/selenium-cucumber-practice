@@ -1,6 +1,5 @@
 package test;
 
-import org.example.drivers.DriverContainer;
 import org.example.models.User;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.UserCreator;
