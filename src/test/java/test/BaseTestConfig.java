@@ -12,11 +12,13 @@ import org.testng.annotations.Listeners;
 @Log4j
 @Listeners(TestListener.class)
 public class BaseTestConfig {
+    WebDriver driver;
 
     @BeforeMethod
     public void initTest() {
         log.debug("Start test");
-        DriverContainer.getDriver().manage().window().maximize();
+        driver = DriverContainer.getDriver();
+        driver.manage().window().maximize();
     }
 
     @AfterMethod(alwaysRun = true)
