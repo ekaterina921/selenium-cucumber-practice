@@ -1,9 +1,11 @@
 package org.example.pageobject_model_sauce_demo;
 
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+@Log4j
 public class CheckoutPages extends SauceDemoPages {
     protected WebDriver driver;
     private final By userFirstNameBy = By.name("firstName");
@@ -35,6 +37,7 @@ public class CheckoutPages extends SauceDemoPages {
         try {
             driver.findElement(By.name("finish")).click();
         } catch (NoSuchElementException e) {
+            log.fatal("ERROR: Finish checkout page is not displayed.");
             throw new IllegalStateException("This is not the second Checkout Page," +
                     " current page is: " + driver.getCurrentUrl());
         }

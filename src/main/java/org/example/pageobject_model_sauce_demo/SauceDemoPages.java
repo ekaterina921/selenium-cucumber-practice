@@ -1,12 +1,15 @@
 package org.example.pageobject_model_sauce_demo;
 
+import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+@Log4j
 public abstract class SauceDemoPages {
+    public static final String NOT_THE_REQUIRED_PAGE = "This is not %s page";
 
-    public SauceDemoPages() {
+    protected SauceDemoPages() {
     }
 
     public String findElementTextByCssSelector(WebDriver driver, String cssSelector) {
@@ -28,12 +31,12 @@ public abstract class SauceDemoPages {
                 driver.findElement(By.className(className));
             } else {
                 if (!findElementTextByClassName(driver, className).equals(pageTitle)) {
-                    throw new NoSuchElementException(String.format("This is not %s page", pageTitle));
+                    throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageTitle));
                 }
             }
         } catch (NoSuchElementException e) {
-            throw new IllegalStateException(String.format("This is not %s Page,", pageTitle) +
-                    "current page is: " + driver.getCurrentUrl());
+            log.fatal(String.format(NOT_THE_REQUIRED_PAGE, pageTitle) + "current page is: " + driver.getCurrentUrl());
+            throw new IllegalStateException();
         }
     }
 }
