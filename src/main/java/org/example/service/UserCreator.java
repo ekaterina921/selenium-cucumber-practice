@@ -16,13 +16,13 @@ public class UserCreator {
 
         if(local.get() == null && website.equalsIgnoreCase("yandex")) {
             log.debug("New User created.");
-        local.set (new User(TestDataReader.getTestData(TESTDATA_YANDEX_USER_NAME),
-                TestDataReader.getTestData(TESTDATA_YANDEX_USER_PASSWORD)));
+        local.set (new User(TestDataReader.getTestDataForUser(TESTDATA_YANDEX_USER_NAME, "usernameYandex"),
+                TestDataReader.getTestDataForUser(TESTDATA_YANDEX_USER_PASSWORD, "passwordYandex")));
 
         } else if (local.get() == null) {
             log.debug("New User created.");
-            local.set (new User(TestDataReader.getTestData(TESTDATA_SAUCE_USER_NAME),
-                    TestDataReader.getTestData(TESTDATA_SAUCE_USER_PASSWORD)));
+            local.set (new User(TestDataReader.getTestDataForUser(TESTDATA_SAUCE_USER_NAME,"usernameSauce"),
+                    TestDataReader.getTestDataForUser(TESTDATA_SAUCE_USER_PASSWORD, "passwordSauce")));
         }
         return local.get();
     }
@@ -33,4 +33,6 @@ public class UserCreator {
             local.remove();
         }
     }
+
+
 }

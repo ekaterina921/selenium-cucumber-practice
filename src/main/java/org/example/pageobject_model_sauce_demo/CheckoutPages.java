@@ -41,5 +41,6 @@ public class CheckoutPages extends SauceDemoPages {
             throw new IllegalStateException("This is not the second Checkout Page," +
                     " current page is: " + driver.getCurrentUrl());
         }
+       log.info("Checkout is finished.");
     }
 }
