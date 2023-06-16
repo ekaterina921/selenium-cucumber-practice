@@ -20,6 +20,7 @@ public class CheckoutPages extends SauceDemoPages {
     public void fillAndSubmitCheckoutForm(String userFirstName, String userLastName, String postalCode) {
         fillCheckoutForm(userFirstName, userLastName, postalCode);
         submitCheckoutForm();
+        log.debug("Checkout form with user data is submitted.");
         ExplicitWaits.waitPage(driver, "Checkout: Overview");
     }
 

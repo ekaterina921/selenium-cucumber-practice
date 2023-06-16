@@ -16,7 +16,7 @@ public class SignInPage extends YandexDiskPages {
         jsExec.executeScript("arguments[0].click();", nextButton);
         driver.findElement(By.id("passp-field-passwd")).sendKeys(yandexUser.getPassword());
         driver.findElement(By.id(SIGN_IN_BUTTON_ID)).click();
-        log.debug ("Sign in is finished. ClientDiskPage is creating.");
+        log.debug ("Sign in is finished. ClientDiskPage opening is triggered.");
         return new ClientDiskPage();
     }
 }

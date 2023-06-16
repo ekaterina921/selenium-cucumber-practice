@@ -7,8 +7,9 @@ import org.example.pageobject_model_yandex_disk.SignInPage;
 import org.example.pageobject_model_yandex_disk.TrashBinPage;
 import org.example.service.UserCreator;
 import org.openqa.selenium.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.util.concurrent.TimeUnit;
 
 
@@ -30,6 +31,7 @@ public class YandexDiskTests extends BaseTestConfig implements Credentials {
         trashBinPage.openFileContextMenu(driver);
         trashBinPage.clickContextMenuItem(driver, "div[data-key='item-0'] > span.Menu-Text");
         int elementsAfterRestore = trashBinPage.countFiles(driver);
-        Assert.assertEquals(elementsAfterRestore, elementsBeforeRestore - 1);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(elementsAfterRestore, elementsBeforeRestore - 1);
     }
 }
