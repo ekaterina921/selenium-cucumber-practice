@@ -16,14 +16,14 @@ public class BaseTestConfig {
 
     @BeforeMethod
     public void initTest() {
-        log.debug("Start test");
+        log.debug("Start test.");
         driver = DriverContainer.getDriver();
         driver.manage().window().maximize();
     }
 
     @AfterMethod(alwaysRun = true)
     public void endTest() {
-        log.debug("End test");
+        log.debug("End test.");
         UserCreator.removeUser();
         DriverContainer.getDriver().quit();
         DriverContainer.removeDriver();
