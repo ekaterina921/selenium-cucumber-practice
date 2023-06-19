@@ -1,21 +1,20 @@
 package test;
 
-import org.openqa.selenium.WebDriver;
+import org.example.models.User;
+import org.example.pageobject_model_sauce_demo.*;
+import org.example.service.UserCreator;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pageobject_model_sauce_demo.*;
 
 
-public class SauceDemoTests implements ConstantsSauceDemo, Credentials {
+public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo {
 
     @Test
     public void testCheckoutHappyPath() {
-        BaseTestConfig baseTestConfig = new BaseTestConfig();
-        WebDriver driver =  baseTestConfig.initTest();
+        User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
         SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
-        ProductsPage productsPage = new ProductsPage(driver);
+        ProductsPage productsPage = signInPage.signIn(testUser);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
@@ -70,17 +69,14 @@ public class SauceDemoTests implements ConstantsSauceDemo, Credentials {
                 "Thank you for your order!",
                 "Complete header is not displayed on Checkout:Complete! page!");
         softAssert.assertAll();
-        baseTestConfig.endTest();
     }
 
-    @Test
+    @Test(priority = 1)
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
-        BaseTestConfig baseTestConfig = new BaseTestConfig();
-        WebDriver driver =  baseTestConfig.initTest();
+        User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
         SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
-        ProductsPage productsPage = new ProductsPage(driver);
+        ProductsPage productsPage = signInPage.signIn(testUser);
         productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
@@ -91,17 +87,14 @@ public class SauceDemoTests implements ConstantsSauceDemo, Credentials {
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0,
                 "Shopping Cart Badge is displayed incorrectly after removing product from cart on Inventory Item page. Should be 0.");
         softAssert.assertAll();
-        baseTestConfig.endTest();
     }
 
-    @Test
+    @Test(priority = 2)
     public void testAddingToAndRemovingSeveralProductsToCart(){
-        BaseTestConfig baseTestConfig = new BaseTestConfig();
-        WebDriver driver =  baseTestConfig.initTest();
+        User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
         SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(USERNAME_SAUCE_LABS, PASSWORD_SAUCE_LABS);
-        ProductsPage productsPage = new ProductsPage(driver);
+        ProductsPage productsPage = signInPage.signIn(testUser);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-onesie");
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
@@ -126,7 +119,6 @@ public class SauceDemoTests implements ConstantsSauceDemo, Credentials {
         softAssert.assertEquals(shoppingCartBadge.getShoppingCartBadgeCount(), 0,
                 "Shopping Cart Badge is displayed incorrectly. Should be 1.");
         softAssert.assertAll();
-        baseTestConfig.endTest();
     }
 
 }

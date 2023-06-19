@@ -1,4 +1,4 @@
-package pageobject_model_yandex_disk;
+package org.example.pageobject_model_yandex_disk;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,15 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static pageobject_model_yandex_disk.YandexDiskPages.selectorForFiles;
-
 public interface ActionsWithStoredFiles {
+    String FILES_ICON = "#app .listing-item__icon.listing-item__icon_type_preview img";
+
     default WebElement findFile(WebDriver driver) {
-        return driver.findElement(By.cssSelector(selectorForFiles));
+        return driver.findElement(By.cssSelector(FILES_ICON));
     }
 
     default int countFiles(WebDriver driver) {
-        return driver.findElements(By.cssSelector(selectorForFiles)).size();
+        return driver.findElements(By.cssSelector(FILES_ICON)).size();
     }
 
     default void openFileContextMenu(WebDriver driver) {
@@ -22,8 +22,8 @@ public interface ActionsWithStoredFiles {
         actions.contextClick(this.findFile(driver)).build().perform();
     }
 
-    default void clickContextMenuItem (WebDriver driver, String CSSSelector) {
-        String querySelector = "document.querySelector(\"" + CSSSelector + "\").click()";
+    default void clickContextMenuItem(WebDriver driver, String cssSelector) {
+        String querySelector = "document.querySelector(\"" + cssSelector + "\").click()";
         JavascriptExecutor jsExec = (JavascriptExecutor) driver;
         jsExec.executeScript(querySelector);
     }
