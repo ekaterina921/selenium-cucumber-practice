@@ -14,7 +14,7 @@ public class SignInPage extends SauceDemoPages {
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
-        checkCurrentPage(driver, "login_container", "Swag Labs", "Sign In");
+        checkCurrentPage(driver, "login_logo", "Swag Labs", "Sign In");
     }
 
     public ProductsPage signIn(User user) {
