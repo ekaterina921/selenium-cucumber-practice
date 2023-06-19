@@ -25,19 +25,15 @@ public abstract class SauceDemoPages {
         return driver.findElement(By.id(elementId)).getText();
     }
 
-    public void checkCurrentPage(WebDriver driver, String className, String pageTitle) {
-        try {
-            if (pageTitle.equalsIgnoreCase("Sign In")) {
-                driver.findElement(By.className(className));
-                log.info("Sign In page is displayed.");
+        public void checkCurrentPage(WebDriver driver, String className, String textValue, String pageName) {
+            try {
+                if (findElementTextByClassName(driver, className).equals(textValue)) {
+                log.info(String.format("%s page is displayed", pageName));
             } else {
-                if (!findElementTextByClassName(driver, className).equals(pageTitle)) {
-                    throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageTitle));
-                }
-                log.info(String.format("%s page is displayed", pageTitle));
+                throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageName));
             }
         } catch (NoSuchElementException e) {
-            log.fatal(String.format(NOT_THE_REQUIRED_PAGE, pageTitle) + "current page is: " + driver.getCurrentUrl());
+            log.fatal(String.format(NOT_THE_REQUIRED_PAGE, pageName) + "current page is: " + driver.getCurrentUrl());
             throw new IllegalStateException();
         }
     }

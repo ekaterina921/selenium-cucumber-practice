@@ -8,7 +8,7 @@ public class ProductsPage extends SauceDemoPages implements InventoryItemsAction
     public static final String INVENTORY_ITEM_PAGE = "Inventory item";
 
     public ProductsPage(WebDriver driver) {
-        checkCurrentPage(driver, "title", "Products");
+        checkCurrentPage(driver, "title", "Products", "Products");
     }
 
     public void openInventoryItem(WebDriver driver, String itemName) {
