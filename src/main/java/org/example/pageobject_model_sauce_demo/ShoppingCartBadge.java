@@ -28,7 +28,7 @@ public class ShoppingCartBadge {
     public ShoppingCart openShoppingCart() {
         driver.findElement(By.cssSelector("#shopping_cart_container > a")).click();
         ExplicitWaits.waitPage(driver, YOUR_CART_PAGE_TITLE);
-        log.info(String.format("%s page is open.", YOUR_CART_PAGE_TITLE));
+        log.info(String.format("%s page is opened.", YOUR_CART_PAGE_TITLE));
         return new ShoppingCart(driver);
     }
 

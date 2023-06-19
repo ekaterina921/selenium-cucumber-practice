@@ -27,14 +27,10 @@ public abstract class SauceDemoPages {
 
     public void checkCurrentPage(WebDriver driver, String className, String pageTitle) {
         try {
-            if (pageTitle.equalsIgnoreCase("Sign In")) {
-                driver.findElement(By.className(className));
-                log.info("Sign In page is displayed.");
-            } else {
-                if (!findElementTextByClassName(driver, className).equals(pageTitle)) {
-                    throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageTitle));
-                }
+            if (findElementTextByClassName(driver, className).equals(pageTitle)) {
                 log.info(String.format("%s page is displayed", pageTitle));
+            } else {
+                throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageTitle));
             }
         } catch (NoSuchElementException e) {
             log.fatal(String.format(NOT_THE_REQUIRED_PAGE, pageTitle) + "current page is: " + driver.getCurrentUrl());
