@@ -13,8 +13,8 @@ public class SauceUserCreator extends UserCreator{
     public SauceUser withCredentialsFromProperty() {
         if (local.get() == null) {
             log.debug("New Sauce Demo User created.");
-            local.set (new SauceUser(TestDataReader.getTestDataForUser(TESTDATA_SAUCE_USER_NAME,"usernameSauce"),
-                    TestDataReader.getTestDataForUser(TESTDATA_SAUCE_USER_PASSWORD, "passwordSauce")));
+            local.set (new SauceUser(new TestDataReaderForUser(new TestDataReaderDecorator(new TestDataReader())).getTestData(TESTDATA_SAUCE_USER_NAME,"usernameSauce"),
+                    new TestDataReaderDecorator(new TestDataReader()).getTestData(TESTDATA_SAUCE_USER_PASSWORD, "passwordSauce")));
         }
         return local.get();
     }

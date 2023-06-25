@@ -13,8 +13,8 @@ public class YandexUserCreator extends UserCreator {
     public YandexUser withCredentialsFromProperty() {
         if (local.get() == null) {
             log.debug("New Yandex User created.");
-            local.set(new YandexUser(TestDataReader.getTestDataForUser(TESTDATA_YANDEX_USER_NAME, "usernameYandex"),
-                    TestDataReader.getTestDataForUser(TESTDATA_YANDEX_USER_PASSWORD, "passwordYandex")));
+            local.set(new YandexUser(new TestDataReaderForUser(new TestDataReaderDecorator(new TestDataReader())).getTestData(TESTDATA_YANDEX_USER_NAME, "usernameYandex"),
+                    new TestDataReaderForUser(new TestDataReaderDecorator(new TestDataReader())).getTestData(TESTDATA_YANDEX_USER_PASSWORD, "passwordYandex")));
         }
         return local.get();
     }
