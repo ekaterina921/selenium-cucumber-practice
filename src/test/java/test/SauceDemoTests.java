@@ -1,19 +1,18 @@
 package test;
 
 import org.example.models.SauceUser;
-import org.example.models.User;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.SauceUserCreator;
-import org.example.service.UserCreator;
+
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo {
+public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
 
     @Test
     public void testCheckoutHappyPath() {
-        User testUser = new SauceUserCreator().withCredentialsFromProperty();
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         new SignInPage(driver)
                 .signIn(testUser)
@@ -75,7 +74,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
 
     @Test(priority = 1)
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
-        User testUser = new SauceUserCreator().withCredentialsFromProperty();
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
@@ -92,7 +91,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
 
     @Test(priority = 2)
     public void testAddingToAndRemovingSeveralProductsToCart(){
-        User testUser = new SauceUserCreator().withCredentialsFromProperty();
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);

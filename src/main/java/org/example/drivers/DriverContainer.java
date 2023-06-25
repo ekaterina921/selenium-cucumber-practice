@@ -18,7 +18,7 @@ import org.openqa.selenium.WebDriver;
 
         public static void removeDriver() {
             if (local.get() != null) {
-                log.debug("Driver removed.");
+                log.debug("Driver removed. Test ended.");
                 local.remove();
             }
         }
