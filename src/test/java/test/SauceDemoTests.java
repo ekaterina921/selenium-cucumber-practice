@@ -13,9 +13,9 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     public void testCheckoutHappyPath() {
         User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
-        productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
+        new SignInPage(driver)
+                .signIn(testUser)
+                .addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
         CheckoutPages checkoutPages = shoppingCart.clickCheckoutButton();
@@ -75,8 +75,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
         User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
+        ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
@@ -93,8 +92,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     public void testAddingToAndRemovingSeveralProductsToCart(){
         User testUser = UserCreator.withCredentialsFromProperty("sauce");
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
+        ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-onesie");
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
