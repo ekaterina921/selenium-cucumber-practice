@@ -1,6 +1,7 @@
 package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
+import org.example.utils.ExplicitWaitsSauceDemo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,7 @@ public class CheckoutPages extends SauceDemoPages {
         fillCheckoutForm(userFirstName, userLastName, postalCode);
         submitCheckoutForm();
         log.debug("Checkout form with user data is submitted.");
-        ExplicitWaits.waitPage(driver, "Checkout: Overview");
+        ExplicitWaitsSauceDemo.waitPage(driver, "Checkout: Overview");
     }
 
     private void fillCheckoutForm(String userFirstName, String userLastName, String postalCode) {

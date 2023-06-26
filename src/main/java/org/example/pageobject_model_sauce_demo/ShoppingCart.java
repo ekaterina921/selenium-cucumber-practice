@@ -1,6 +1,7 @@
 package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
+import org.example.utils.ExplicitWaitsSauceDemo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,7 +20,7 @@ public class ShoppingCart extends SauceDemoPages implements InventoryItemsAction
     public CheckoutPages clickCheckoutButton() {
         driver.findElement(By.xpath("//*[@id=\"checkout\"]")).click();
         log.debug(String.format("%s page opening is triggered.", YOUR_INFORMATION_PAGE));
-        ExplicitWaits.waitPage(driver, YOUR_INFORMATION_PAGE);
+        ExplicitWaitsSauceDemo.waitPage(driver, YOUR_INFORMATION_PAGE);
         return new CheckoutPages(driver);
     }
 

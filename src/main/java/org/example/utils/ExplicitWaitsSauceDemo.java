@@ -1,4 +1,4 @@
-package org.example.pageobject_model_sauce_demo;
+package org.example.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,8 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ExplicitWaits {
+public class ExplicitWaitsSauceDemo {
     public static final int MEDIUM_DURATION_OF_WAITING = 10;
+
+    private ExplicitWaitsSauceDemo() {
+    }
+
     public static void waitPage(WebDriver driver, String pageTitle) {
         (new WebDriverWait(driver, Duration.ofSeconds(MEDIUM_DURATION_OF_WAITING))).
                 until(ExpectedConditions.
