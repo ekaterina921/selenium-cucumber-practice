@@ -7,10 +7,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ExplicitWaitsSauceDemo {
+public class ExplicitWaits {
     public static final int MEDIUM_DURATION_OF_WAITING = 10;
 
-    private ExplicitWaitsSauceDemo() {
+    private ExplicitWaits() {
     }
 
     public static void waitPage(WebDriver driver, String pageTitle) {

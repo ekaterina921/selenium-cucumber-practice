@@ -2,7 +2,7 @@ package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
 import org.example.models.SauceUser;
-import org.example.utils.ExplicitWaitsSauceDemo;
+import org.example.utils.ExplicitWaits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 @Log4j
@@ -23,7 +23,7 @@ public class SignInPage extends SauceDemoPages {
         driver.findElement(passwordInput).sendKeys(user.getPassword());
         driver.findElement(signInButton).click();
         log.debug(String.format("%s opening triggered.", PRODUCTS_PAGE));
-        ExplicitWaitsSauceDemo.waitPage(driver, PRODUCTS_PAGE);
+        ExplicitWaits.waitPage(driver, PRODUCTS_PAGE);
         return new ProductsPage(driver);
     }
 }

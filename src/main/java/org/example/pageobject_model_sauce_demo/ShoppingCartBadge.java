@@ -1,7 +1,7 @@
 package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
-import org.example.utils.ExplicitWaitsSauceDemo;
+import org.example.utils.ExplicitWaits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +28,7 @@ public class ShoppingCartBadge {
 
     public ShoppingCart openShoppingCart() {
         driver.findElement(By.cssSelector("#shopping_cart_container > a")).click();
-        ExplicitWaitsSauceDemo.waitPage(driver, YOUR_CART_PAGE_TITLE);
+        ExplicitWaits.waitPage(driver, YOUR_CART_PAGE_TITLE);
         log.info(String.format("%s page is opened.", YOUR_CART_PAGE_TITLE));
         return new ShoppingCart(driver);
     }

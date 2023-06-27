@@ -1,7 +1,7 @@
 package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
-import org.example.utils.ExplicitWaitsSauceDemo;
+import org.example.utils.ExplicitWaits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 @Log4j
@@ -16,7 +16,7 @@ public class ProductsPage extends SauceDemoPages implements InventoryItemsAction
         String xPathToItem = "//*[text()='" + itemName + "']";
         driver.findElement(By.xpath(xPathToItem)).click();
         log.debug(String.format("%s page opening is triggered.", INVENTORY_ITEM_PAGE));
-        ExplicitWaitsSauceDemo.waitPageByElementId(driver, "back-to-products");
+        ExplicitWaits.waitPageByElementId(driver, "back-to-products");
         log.info("Inventory item page is opened.");
     }
 
