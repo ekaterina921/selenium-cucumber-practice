@@ -27,7 +27,7 @@ public class TestNgReportAppender extends AppenderSkeleton {
 
     @Override
     public void close() {
-
+        throw new UnsupportedOperationException("The operation is not supported");
     }
 
     @Override

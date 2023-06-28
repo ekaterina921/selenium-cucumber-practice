@@ -8,7 +8,10 @@ import org.openqa.selenium.WebDriver;
     public class DriverContainer {
         static ThreadLocal<WebDriver> local = new ThreadLocal<>();
 
-        public static WebDriver getDriver() {
+    private DriverContainer() {
+    }
+
+    public static WebDriver getDriver() {
             if (local.get() == null) {
                 log.debug("New driver created.");
                 local.set(DriverCreator.create(System.getProperty("browser")));
@@ -18,7 +21,7 @@ import org.openqa.selenium.WebDriver;
 
         public static void removeDriver() {
             if (local.get() != null) {
-                log.debug("Driver removed.");
+                log.debug("Driver removed. Test ended.");
                 local.remove();
             }
         }

@@ -1,21 +1,22 @@
 package test;
 
-import org.example.models.User;
+import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
-import org.example.service.UserCreator;
+import org.example.service.SauceUserCreator;
+
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo {
+public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
 
     @Test
     public void testCheckoutHappyPath() {
-        User testUser = UserCreator.withCredentialsFromProperty("sauce");
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
-        productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
+        new SignInPage(driver)
+                .signIn(testUser)
+                .addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
         ShoppingCart shoppingCart = shoppingCartBadge.openShoppingCart();
         CheckoutPages checkoutPages = shoppingCart.clickCheckoutButton();
@@ -73,10 +74,9 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
 
     @Test(priority = 1)
     public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
-        User testUser = UserCreator.withCredentialsFromProperty("sauce");
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
+        ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.openInventoryItem(driver, SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);
@@ -91,10 +91,9 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
 
     @Test(priority = 2)
     public void testAddingToAndRemovingSeveralProductsToCart(){
-        User testUser = UserCreator.withCredentialsFromProperty("sauce");
+        SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
-        SignInPage signInPage = new SignInPage(driver);
-        ProductsPage productsPage = signInPage.signIn(testUser);
+        ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
         productsPage.addToCart(driver, ADDING_TO_CART_SAUCE_LABS_BACKPACK);
         productsPage.addToCart(driver, "add-to-cart-sauce-labs-onesie");
         ShoppingCartBadge shoppingCartBadge = new ShoppingCartBadge(driver);

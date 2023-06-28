@@ -1,6 +1,7 @@
 package org.example.pageobject_model_sauce_demo;
 
 import lombok.extern.log4j.Log4j;
+import org.example.utils.ExplicitWaits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

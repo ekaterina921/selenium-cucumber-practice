@@ -1,5 +1,6 @@
 package org.example.pageobject_model_sauce_demo;
 
+import org.example.utils.ExplicitWaits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 public interface InventoryItemsActions {

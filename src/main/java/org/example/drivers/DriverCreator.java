@@ -12,7 +12,7 @@ public class DriverCreator {
     private DriverCreator() {
     }
 
-    public static WebDriver create(String browser) {
+    protected static WebDriver create(String browser) {
             switch (browser) {
                 case "firefox" -> {
                     WebDriverManager.firefoxdriver().setup();
