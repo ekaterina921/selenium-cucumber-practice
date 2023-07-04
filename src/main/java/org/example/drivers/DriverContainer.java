@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 
     public static WebDriver getDriver() {
             if (local.get() == null) {
+
                 log.debug("New driver created.");
                 local.set(DriverCreator.create(System.getProperty("browser")));
             }
