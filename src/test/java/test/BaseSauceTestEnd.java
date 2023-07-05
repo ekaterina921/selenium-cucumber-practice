@@ -2,7 +2,7 @@ package test;
 
 
 import org.example.drivers.DriverContainer;
-import org.example.service.YandexUserCreator;
+import org.example.service.SauceUserCreator;
 import org.example.utils.TestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Listeners;
@@ -11,8 +11,8 @@ import org.testng.annotations.Listeners;
 public interface BaseSauceTestEnd {
 
     @AfterMethod(alwaysRun = true)
-    public default void endTest() {
-        new YandexUserCreator().removeUser();
+    default void endTest() {
+        new SauceUserCreator().removeUser();
         DriverContainer.getDriver().quit();
         DriverContainer.removeDriver();
     }
