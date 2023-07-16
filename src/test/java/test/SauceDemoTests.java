@@ -1,17 +1,24 @@
 package test;
 
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
+import com.google.common.io.Resources;
 import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.SauceUserCreator;
 
+import org.example.utils.ExtendedListener;
+import org.example.utils.LoggingUtils;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
 
+//@Listeners({ExtendedListener.class})
 public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
 
     @Test
-    public void testCheckoutHappyPath() {
+    public void testCheckoutHappyPath() throws IOException {
         SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         new SignInPage(driver)

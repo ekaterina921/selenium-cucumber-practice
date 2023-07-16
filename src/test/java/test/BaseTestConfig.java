@@ -1,20 +1,20 @@
 package test;
 
-import lombok.extern.log4j.Log4j;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.example.drivers.DriverContainer;
-import org.example.utils.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 
-@Log4j
-@Listeners(TestListener.class)
+import static org.example.drivers.DriverContainer.LOGGER;
+
+
+//@Listeners({TestListener.class})
 public class BaseTestConfig {
     WebDriver driver;
 
     @BeforeMethod
     public void initTest() {
-        log.debug("Start test.");
+        LOGGER.debug("Start test.");
         driver = DriverContainer.getDriver();
         driver.manage().window().maximize();
     }

@@ -12,7 +12,6 @@ import org.example.drivers.DriverContainer;
 import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.SauceUserCreator;
-import org.example.utils.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Listeners;
 import org.testng.Assert;
@@ -20,10 +19,11 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
+import static org.example.drivers.DriverContainer.LOGGER;
 import static test.ConstantsSauceDemo.SIGN_IN_PAGE_URL;
 
-@Log4j
-@Listeners(TestListener.class)
+//@Log4j
+//@Listeners(TestListener.class)
 public class SauceDemoManagementSteps{
     ProductsPage productsPage;
     ShoppingCart shoppingCart;
@@ -35,7 +35,7 @@ public class SauceDemoManagementSteps{
     public void initTest(Scenario sc) {
         System.setProperty("environment", "qa");
         System.setProperty("browser", "chrome");
-        log.debug("Start test." + sc.getName());
+        LOGGER.debug("Start test." + sc.getName());
         driver = DriverContainer.getDriver();
         driver.manage().window().maximize();
     }
