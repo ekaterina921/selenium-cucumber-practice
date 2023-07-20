@@ -1,15 +1,15 @@
 package org.example.pageobject_model_sauce_demo;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
+import org.example.utils.ExtendedListener;
+import org.example.utils.LoggingUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.testng.annotations.Listeners;
 
-import static org.example.drivers.DriverContainer.LOGGER;
-
+@Log4j2
+@Listeners({ExtendedListener.class})
 public abstract class SauceDemoPages {
 
     public static final String NOT_THE_REQUIRED_PAGE = "This is not %s page";
@@ -33,12 +33,12 @@ public abstract class SauceDemoPages {
         public void checkCurrentPage(WebDriver driver, String className, String textValue, String pageName) {
             try {
                 if (findElementTextByClassName(driver, className).equals(textValue)) {
-                    LOGGER.info(String.format("%s page is displayed", pageName));
+                    LoggingUtils.logPlain(String.format("%s page is displayed", pageName));
             } else {
                 throw new NoSuchElementException(String.format(NOT_THE_REQUIRED_PAGE, pageName));
             }
         } catch (NoSuchElementException e) {
-                LOGGER.error(String.format(NOT_THE_REQUIRED_PAGE, pageName) + "current page is: " + driver.getCurrentUrl());
+                LoggingUtils.logPlain(String.format(NOT_THE_REQUIRED_PAGE, pageName) + "current page is: " + driver.getCurrentUrl());
             throw new IllegalStateException();
         }
     }

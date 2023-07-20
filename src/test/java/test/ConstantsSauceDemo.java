@@ -11,6 +11,5 @@ public interface ConstantsSauceDemo {
     String PRICE_SAUCE_LABS_BACKPACK = "$29.99";
     String PRICE_SAUCE_LABS_ONESIE = "$7.99";
 
-    public static final String JSON_FILE_PATH = "xml/file.json";
 
 }

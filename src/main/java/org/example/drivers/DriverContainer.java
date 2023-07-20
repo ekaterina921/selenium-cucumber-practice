@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
     public class DriverContainer {
         static ThreadLocal<WebDriver> local = new ThreadLocal<>();
         public static final Logger LOGGER = LoggerFactory.getLogger(DriverContainer.class);
-    private DriverContainer() {
+    public DriverContainer() {
     }
 
     public static WebDriver getDriver() {

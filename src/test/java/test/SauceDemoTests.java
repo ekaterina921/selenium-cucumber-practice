@@ -1,24 +1,23 @@
 package test;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import com.google.common.io.Resources;
+import lombok.extern.log4j.Log4j2;
 import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.SauceUserCreator;
 
 import org.example.utils.ExtendedListener;
-import org.example.utils.LoggingUtils;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-//@Listeners({ExtendedListener.class})
+@Log4j2
+@Listeners({ExtendedListener.class})
 public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
 
     @Test
-    public void testCheckoutHappyPath() throws IOException {
+    public void testCheckoutHappyPath(){
         SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         new SignInPage(driver)
@@ -80,7 +79,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     }
 
     @Test(priority = 1)
-    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
+    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage() throws IOException {
         SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
@@ -97,7 +96,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     }
 
     @Test(priority = 2)
-    public void testAddingToAndRemovingSeveralProductsToCart(){
+    public void testAddingToAndRemovingSeveralProductsToCart() {
         SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         ProductsPage productsPage = new SignInPage(driver).signIn(testUser);
@@ -126,6 +125,5 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
                 "Shopping Cart Badge is displayed incorrectly. Should be 1.");
         softAssert.assertAll();
     }
-
 }
 

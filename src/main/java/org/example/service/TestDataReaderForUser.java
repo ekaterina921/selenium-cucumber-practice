@@ -1,10 +1,10 @@
 package org.example.service;
 
-import lombok.extern.log4j.Log4j;
 
-import static org.example.drivers.DriverContainer.LOGGER;
+import lombok.extern.log4j.Log4j2;
 
 
+@Log4j2
 public class TestDataReaderForUser extends TestDataReaderDecorator {
     public TestDataReaderForUser(TestDataReaderMethods testDataReaderDecorator) {
         super(testDataReaderDecorator);
@@ -15,7 +15,7 @@ public class TestDataReaderForUser extends TestDataReaderDecorator {
         if (testDataReaderDecorator.getTestData(constant).isBlank()) {
             return System.getProperty(nameOrPassword);
         } else {
-            LOGGER.warn(String.format("Default test data for %s will be used. " +
+            log.warn(String.format("Default test data for %s will be used. " +
                     "It may cause an issue as test credentials are not stored in the shared repository.", nameOrPassword));
             return testDataReaderDecorator.getTestData(constant);
         }

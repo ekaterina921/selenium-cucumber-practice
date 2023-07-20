@@ -17,6 +17,7 @@ import org.testng.annotations.Listeners;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.example.drivers.DriverContainer.LOGGER;
@@ -30,7 +31,6 @@ public class SauceDemoManagementSteps{
     ShoppingCartBadge shoppingCartBadge;
     CheckoutPages checkoutPages;
     WebDriver driver;
-
     @Before
     public void initTest(Scenario sc) {
         System.setProperty("environment", "qa");
@@ -83,7 +83,7 @@ public class SauceDemoManagementSteps{
     }
 
     @When("User opens Inventory Details page for {string}")
-    public void user_opens_inventory_details_page_for(String product) {
+    public void user_opens_inventory_details_page_for(String product) throws IOException {
         productsPage.openInventoryItem(driver, product);
     }
 

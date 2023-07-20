@@ -1,12 +1,15 @@
 package org.example.pageobject_model_yandex_disk;
 
-import lombok.extern.log4j.Log4j;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
+import lombok.extern.log4j.Log4j2;
 import org.example.models.YandexUser;
+import org.example.utils.ExtendedListener;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Listeners;
 
-import static org.example.drivers.DriverContainer.LOGGER;
-
+@Log4j2
+@Listeners({ExtendedListener.class, ReportPortalTestNGListener.class})
 public class SignInPage extends YandexDiskPages {
 
     static final String SIGN_IN_BUTTON_ID = "passp:sign-in";
@@ -18,7 +21,7 @@ public class SignInPage extends YandexDiskPages {
         jsExec.executeScript("arguments[0].click();", nextButton);
         driver.findElement(By.id("passp-field-passwd")).sendKeys(yandexUser.getPassword());
         driver.findElement(By.id(SIGN_IN_BUTTON_ID)).click();
-        LOGGER.debug ("Sign in is finished. ClientDiskPage opening is triggered.");
+        log.debug ("Sign in is finished. ClientDiskPage opening is triggered.");
         return new ClientDiskPage();
     }
 }

@@ -5,7 +5,4 @@
             <class name="test.YandexDiskTests"/>
         </classes>
     </test>
-<!--    <listeners>-->
-<!--        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />-->
-<!--    </listeners>-->
 </suite>

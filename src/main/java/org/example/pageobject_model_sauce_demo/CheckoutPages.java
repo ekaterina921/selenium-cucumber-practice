@@ -1,15 +1,17 @@
 package org.example.pageobject_model_sauce_demo;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.example.utils.ExplicitWaits;
+import org.example.utils.ExtendedListener;
+import org.example.utils.LoggingUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Listeners;
 
 import static org.example.drivers.DriverContainer.LOGGER;
-
-
+@Log4j2
+@Listeners({ExtendedListener.class})
 public class CheckoutPages extends SauceDemoPages {
 
     protected WebDriver driver;
@@ -25,8 +27,8 @@ public class CheckoutPages extends SauceDemoPages {
     public void fillAndSubmitCheckoutForm(String userFirstName, String userLastName, String postalCode) {
         fillCheckoutForm(userFirstName, userLastName, postalCode);
         submitCheckoutForm();
-//        log.debug("Checkout form with user data is submitted.");
-        LOGGER.debug("Checkout form with user data is submitted.");
+
+        LoggingUtils.logPlain("Checkout form with user data is submitted.");
         ExplicitWaits.waitPage(driver, "Checkout: Overview");
     }
 
@@ -44,12 +46,10 @@ public class CheckoutPages extends SauceDemoPages {
         try {
             driver.findElement(By.name("finish")).click();
         } catch (NoSuchElementException e) {
-//            log.fatal("ERROR: Finish checkout page is not displayed.");
             LOGGER.error("ERROR: Finish checkout page is not displayed.");
             throw new IllegalStateException("This is not the second Checkout Page," +
                     " current page is: " + driver.getCurrentUrl());
         }
-//       log.info("Checkout is finished.");
-        LOGGER.info("Checkout is finished.");
+        LoggingUtils.logPlain("Checkout is finished.");
     }
 }

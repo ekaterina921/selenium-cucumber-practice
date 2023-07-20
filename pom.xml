@@ -19,18 +19,41 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>2.22.2</version>-->
+<!--                <configuration>-->
+
+<!--                    &lt;!&ndash; Uncomment it if you don't want your build to be failed in case of test errors &ndash;&gt;-->
+<!--                    <testFailureIgnore>true</testFailureIgnore>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <xmlFile>testng-all.xml</xmlFile>-->
+<!--                        <xmlFile>testng-sauce-demo.xml</xmlFile>-->
+<!--                        <xmlFile>testng-yandex.xml</xmlFile>-->
+<!--                    </suiteXmlFiles>-->
+<!--                    &lt;!&ndash; ADD working directory to get TestNG know we to find suite files &ndash;&gt;-->
+<!--                    <workingDirectory>src/test/resources/</workingDirectory>-->
+<!--                    <properties>-->
+<!--                        <property>-->
+<!--                            <name>usedefaultlisteners</name>-->
+<!--                            <value>false</value>-->
+<!--                        </property>-->
+<!--                    </properties>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </reporting>
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
+            <version>2.0.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.17.2</version>
+            <version>2.20.0</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -77,7 +100,7 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.1.5</version>
+            <version>5.1.8</version>
         </dependency>
     </dependencies>
 </project>
