@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Listeners;
 
 @Log4j2
-@Listeners({ExtendedListener.class, ReportPortalTestNGListener.class})
+@Listeners({ExtendedListener.class})
 public class SignInPage extends YandexDiskPages {
 
     static final String SIGN_IN_BUTTON_ID = "passp:sign-in";
