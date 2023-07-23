@@ -19,29 +19,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>2.22.2</version>-->
-<!--                <configuration>-->
-
-<!--                    &lt;!&ndash; Uncomment it if you don't want your build to be failed in case of test errors &ndash;&gt;-->
-<!--                    <testFailureIgnore>true</testFailureIgnore>-->
-<!--                    <suiteXmlFiles>-->
-<!--                        <xmlFile>testng-all.xml</xmlFile>-->
-<!--                        <xmlFile>testng-sauce-demo.xml</xmlFile>-->
-<!--                        <xmlFile>testng-yandex.xml</xmlFile>-->
-<!--                    </suiteXmlFiles>-->
-<!--                    &lt;!&ndash; ADD working directory to get TestNG know we to find suite files &ndash;&gt;-->
-<!--                    <workingDirectory>src/test/resources/</workingDirectory>-->
-<!--                    <properties>-->
-<!--                        <property>-->
-<!--                            <name>usedefaultlisteners</name>-->
-<!--                            <value>false</value>-->
-<!--                        </property>-->
-<!--                    </properties>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
     </reporting>
     <dependencies>

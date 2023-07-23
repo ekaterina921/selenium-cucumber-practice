@@ -10,8 +10,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
-
 @Log4j2
 @Listeners({ExtendedListener.class})
 public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
@@ -79,7 +77,7 @@ public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo
     }
 
     @Test(priority = 1)
-    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage() throws IOException {
+    public void testAddingToAndRemovingProductFromCartOnInventoryDetailsPage(){
         SauceUser testUser = new SauceUserCreator().withCredentialsFromProperty();
         driver.navigate().to(SIGN_IN_PAGE_URL);
         ProductsPage productsPage = new SignInPage(driver).signIn(testUser);

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.example.drivers.DriverContainer;
 import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
@@ -20,31 +21,30 @@ import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 import java.util.List;
 
-import static org.example.drivers.DriverContainer.LOGGER;
 import static test.ConstantsSauceDemo.SIGN_IN_PAGE_URL;
 
-//@Log4j
-//@Listeners(TestListener.class)
+@Log4j2
 public class SauceDemoManagementSteps{
     ProductsPage productsPage;
     ShoppingCart shoppingCart;
     ShoppingCartBadge shoppingCartBadge;
     CheckoutPages checkoutPages;
     WebDriver driver;
+    DriverContainer driverContainer = new DriverContainer();
     @Before
     public void initTest(Scenario sc) {
         System.setProperty("environment", "qa");
         System.setProperty("browser", "chrome");
-        LOGGER.debug("Start test." + sc.getName());
-        driver = DriverContainer.getDriver();
+        log.debug("Start test." + sc.getName());
+        driver = driverContainer.getDriver();
         driver.manage().window().maximize();
     }
 
     @After
     public void endTest() {
         new SauceUserCreator().removeUser();
-        DriverContainer.getDriver().quit();
-        DriverContainer.removeDriver();
+        driverContainer.getDriver().quit();
+        driverContainer.removeDriver();
     }
 
     @Given("User is logged in")

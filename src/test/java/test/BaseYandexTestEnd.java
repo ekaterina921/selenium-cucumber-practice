@@ -9,11 +9,11 @@ import org.testng.annotations.Listeners;
 
 @Listeners({ ExtendedListener.class})
 public interface BaseYandexTestEnd {
-
+    DriverContainer driverContainer = new DriverContainer();
     @AfterMethod(alwaysRun = true)
-    public default void endTest() {
+    default void endTest() {
         new YandexUserCreator().removeUser();
-        DriverContainer.getDriver().quit();
-        DriverContainer.removeDriver();
+        driverContainer.getDriver().quit();
+        driverContainer.removeDriver();
     }
 }

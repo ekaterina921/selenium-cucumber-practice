@@ -1,6 +1,5 @@
 package org.example.pageobject_model_yandex_disk;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import lombok.extern.log4j.Log4j2;
 import org.example.models.YandexUser;
 import org.example.utils.ExtendedListener;

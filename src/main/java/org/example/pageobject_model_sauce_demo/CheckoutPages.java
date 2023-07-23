@@ -9,7 +9,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Listeners;
 
-import static org.example.drivers.DriverContainer.LOGGER;
 @Log4j2
 @Listeners({ExtendedListener.class})
 public class CheckoutPages extends SauceDemoPages {
@@ -46,7 +45,7 @@ public class CheckoutPages extends SauceDemoPages {
         try {
             driver.findElement(By.name("finish")).click();
         } catch (NoSuchElementException e) {
-            LOGGER.error("ERROR: Finish checkout page is not displayed.");
+            log.error("ERROR: Finish checkout page is not displayed.");
             throw new IllegalStateException("This is not the second Checkout Page," +
                     " current page is: " + driver.getCurrentUrl());
         }
