@@ -2,13 +2,10 @@ package org.example.pageobject_model_yandex_disk;
 
 
 import lombok.extern.log4j.Log4j2;
-import org.example.utils.ExtendedListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
 
 @Log4j2
-@Listeners({ExtendedListener.class})
 public class LandingPage extends YandexDiskPages {
     String landingURL = "https://360.yandex.ru/disk/";
     public void getDiskLandingPage(WebDriver driver) {

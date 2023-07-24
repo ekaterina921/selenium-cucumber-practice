@@ -5,13 +5,10 @@ import org.example.models.SauceUser;
 import org.example.pageobject_model_sauce_demo.*;
 import org.example.service.SauceUserCreator;
 
-import org.example.utils.ExtendedListener;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 @Log4j2
-@Listeners({ExtendedListener.class})
 public class SauceDemoTests extends BaseTestConfig implements ConstantsSauceDemo, BaseSauceTestEnd {
 
     @Test

@@ -1,15 +1,12 @@
 package org.example.pageobject_model_yandex_disk;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.utils.ExtendedListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.Listeners;
 
 @Log4j2
-@Listeners({ExtendedListener.class})
 public class ClientDiskPage extends YandexDiskPages implements ActionsWithStoredFiles {
     public static final String TRASH_BIN = "Trash bin";
 

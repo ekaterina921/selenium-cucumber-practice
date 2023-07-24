@@ -10,7 +10,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
-@Listeners({ ExtendedListener.class})
 public class ExtendedListener extends BaseTestNGListener {
 
     public ExtendedListener() {

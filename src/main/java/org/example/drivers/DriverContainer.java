@@ -1,12 +1,9 @@
 package org.example.drivers;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.utils.ExtendedListener;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
 
 @Log4j2
-@Listeners({ ExtendedListener.class})
     public class DriverContainer {
         static ThreadLocal<WebDriver> local = new ThreadLocal<>();
     public DriverContainer() {

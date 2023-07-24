@@ -7,16 +7,13 @@ import org.example.pageobject_model_yandex_disk.LandingPage;
 import org.example.pageobject_model_yandex_disk.SignInPage;
 import org.example.pageobject_model_yandex_disk.TrashBinPage;
 import org.example.service.YandexUserCreator;
-import org.example.utils.ExtendedListener;
 import org.openqa.selenium.*;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.concurrent.TimeUnit;
 
 
 @Log4j2
-@Listeners({ExtendedListener.class})
 public class YandexDiskTests extends BaseTestConfig implements Credentials, BaseYandexTestEnd {
 
 

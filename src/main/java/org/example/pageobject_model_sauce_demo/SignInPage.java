@@ -3,14 +3,10 @@ package org.example.pageobject_model_sauce_demo;
 import lombok.extern.log4j.Log4j2;
 import org.example.models.SauceUser;
 import org.example.utils.ExplicitWaits;
-import org.example.utils.ExtendedListener;
 import org.example.utils.LoggingUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Listeners;
-
 @Log4j2
-@Listeners({ExtendedListener.class})
 public class SignInPage extends SauceDemoPages {
     protected WebDriver driver;
     private final By usernameInput = By.name("user-name");
